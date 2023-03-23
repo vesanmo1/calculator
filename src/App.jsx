@@ -4,15 +4,27 @@ import { MyNewComponent } from "./MyNewComponent";
 import { CalculatorButton } from "./CalculatorButton";
 import "./App.css";
 
+
 function App() {
   const [currentValue, setCurrentValue] = useState("0");
 
   const handleButtonClick = (buttonValue) => {
+
+    if (buttonValue === "." && currentValue.includes(".")) {
+      return;
+    }
+
+    if (buttonValue === "+-") {
+      setCurrentValue((currentValue * -1).toString());
+      return;
+    }
+
     if (buttonValue === "C") {
       console.log("me he reseteado");
       setCurrentValue("0");
       return;
     }
+
 
     if (currentValue === "0") {
       setCurrentValue(buttonValue);
